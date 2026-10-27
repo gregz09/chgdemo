@@ -37,7 +37,7 @@ function vatAmount(net) {
 }
 ```
 
-and add this test to `test/checkout.test.js`:1
+and add this test to `test/checkout.test.js`:12
 
 ```js
   test('VAT is rounded, not truncated', () => {
