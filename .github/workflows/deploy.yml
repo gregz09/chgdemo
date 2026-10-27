@@ -42,7 +42,7 @@ jobs:
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
           job-name: 'Change approval'
-          change-request: '{"autoCloseChange":true,"attributes":{"short_description":"Demo Web App - automated deployment","description":"GitHub Actions run ${{ github.run_number }}","implementation_plan":"Automated deployment by GitHub Actions","backout_plan":"Redeploy previous successful run","test_plan":"Automated unit tests"}}'
+             change-request: '{"autoCloseChange":true,"attributes":{"short_description":"Demo Web App - automated deployment","assignment_group":"6fec7fdd5b40011074d09113a281c771","description":"GitHub Actions run ${{ github.run_number }}","implementation_plan":"Automated deployment by GitHub Actions","backout_plan":"Redeploy previous successful run","test_plan":"Automated unit tests"}}'
           interval: '30'
           timeout: '3600'
           changeCreationTimeOut: '3600'
