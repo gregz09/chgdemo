@@ -9,7 +9,7 @@ Tiny checkout service used to demo **ServiceNow DevOps Change Velocity** with Gi
    git remote add origin https://github.com/<account>/demo-web-app.git
    git push -u origin --all
    ```
-2. Give the ServiceNow GitHub App access to the repo.
+2. Give the ServiceNow GitHub App access to the repo
 3. Add the Actions secrets under Settings → Secrets and variables → Actions:
    `SN_INSTANCE_URL`, `SN_DEVOPS_INTEGRATION_TOKEN`, `SN_ORCHESTRATION_TOOL_ID`.
 4. Create the environment `production` under Settings → Environments.
