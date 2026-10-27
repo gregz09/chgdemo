@@ -13,6 +13,11 @@ describe('checkout', () => {
     expect(grossTotal([{ price: 50, qty: 2 }, { price: 100, qty: 1 }])).toBe(246);
   });
 
+  test('Scenario C: deliberately failing test', () => {
+    // Expected value is wrong on purpose: this test must fail in the pipeline.
+    expect(grossTotal([{ price: 10, qty: 1 }])).toBe(12);
+  });
+
   test('empty basket costs nothing', () => {
     expect(grossTotal([])).toBe(0);
   });
