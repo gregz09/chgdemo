@@ -36,7 +36,7 @@ function vatAmount(net) {
   return Math.round(net * VAT_RATE * 100) / 100;
 }
 ```
-
+Test first change
 and add this test to `test/checkout.test.js`:123
 
 ```js
