@@ -6,7 +6,7 @@ const VAT_RATE = 0.23;
 function vatAmount(net) {
   // DEMO BUG (Scenario A): Math.floor truncates instead of rounding,
   // so some totals are one grosz too low (e.g. 19.99 -> 24.58 instead of 24.59).
-  return Math.floor(net * VAT_RATE * 100) / 100;
+  return Math.round(net * VAT_RATE * 100) / 100;
 }
 
 function grossTotal(items) {
