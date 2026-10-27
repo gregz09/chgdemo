@@ -1,0 +1,50 @@
+name: Demo Web App - Release
+on:
+  push:
+    tags: [ 'v*' ]
+
+jobs:
+  build:
+    name: Build release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci && npm test
+      - name: Send test results to ServiceNow
+        if: always()
+        uses: ServiceNow/servicenow-devops-test-report@main   # pin to the latest release tag before the demo
+        with:
+          devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          context-github: ${{ toJSON(github) }}
+          job-name: 'Build release'
+          xml-report-filename: junit.xml
+
+  change:
+    name: Release change
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ServiceNow/servicenow-devops-change@v4.0.0
+        with:
+          devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          context-github: ${{ toJSON(github) }}
+          job-name: 'Release change'
+          change-request: '{"autoCloseChange":true,"attributes":{"short_description":"Demo Web App release ${{ github.ref_name }}"}}'
+          interval: '30'
+          timeout: '3600'
+
+  deploy:
+    name: Deploy release
+    needs: change
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - run: echo "Deploying release ${{ github.ref_name }}"
