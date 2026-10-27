@@ -45,4 +45,4 @@ and add this test to `test/checkout.test.js`:
   });
 ```
 
-Commit message: `STRY0010007: fix VAT rounding on checkout total` auto-reject
+Commit message: `STRY0010007: fix VAT rounding on checkout total` auto
