@@ -37,7 +37,7 @@ jobs:
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
           job-name: 'Release change'
-          change-request: '{"autoCloseChange":true,"attributes":{"short_description":"Demo Web App release ${{ github.ref_name }}"}}'
+          change-request: '{"autoCloseChange":true,"attributes":{"assignment_group":"6fec7fdd5b40011074d09113a281c771","short_description":"Demo Web App release ${{ github.ref_name }}"}}'
           interval: '30'
           timeout: '3600'
 
